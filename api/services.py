@@ -1,8 +1,8 @@
 import json
 
 from sqlalchemy.future import select
-from api.model import Classifications, Jogos, Clubes
-from api.schemas import ClassificacaoUpdate, Jogo, UpdateClassificacao
+from model import Classifications, Jogos, Clubes
+from schemas import ClassificacaoUpdate, Jogo, UpdateClassificacao
 
 from con import session
 

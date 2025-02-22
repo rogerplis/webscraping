@@ -2,6 +2,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
+from services import criar_clube
 
 
 
@@ -40,7 +41,6 @@ for id_pai in ids:
         img = equipe.find('img')['data-src']
         nome = equipe.find('a')['data-slug-equipe-sde']
         img_nome = f'{nome}.svg'
-        salvarImg(img, img_nome, nome_serie)        
+        #salvarImg(img, img_nome, nome_serie)
+        criar_clube(nome, nome_serie, img_nome)        
         print(nome, img, nome_serie)
-
-

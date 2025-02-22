@@ -2,8 +2,8 @@ from typing import List
 
 from fastapi import APIRouter
 
-from api.schemas import ClassificacaoUpdate
-from api.services import get_classifications
+from schemas import ClassificacaoUpdate
+from services import get_classifications
 
 router = APIRouter(prefix='/classificacao', tags=['classificacao'])
 
