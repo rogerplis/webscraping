@@ -1,0 +1,343 @@
+{
+    "equipes": [
+        {
+            "position": 1,
+            "equipe": "Botafogo",
+            "pontos": 36,
+            "jogos": 18,
+            "vitorias": 11,
+            "empates": 3,
+            "derrotas": 4,
+            "golsPro": 33,
+            "golsContra": 20,
+            "saldoGols": 13,
+            "aproveitamento": "66.67%"
+        },
+        {
+            "position": 2,
+            "equipe": "Palmeiras",
+            "pontos": 33,
+            "jogos": 17,
+            "vitorias": 11,
+            "empates": 3,
+            "derrotas": 4,
+            "golsPro": 25,
+            "golsContra": 13,
+            "saldoGols": 15,
+            "aproveitamento": "70.59%"
+        },
+        {
+            "position": 3,
+            "equipe": "Flamengo",
+            "pontos": 31,
+            "jogos": 16,
+            "vitorias": 9,
+            "empates": 4,
+            "derrotas": 3,
+            "golsPro": 28,
+            "golsContra": 17,
+            "saldoGols": 11,
+            "aproveitamento": "64.58%"
+        },
+        {
+            "position": 4,
+            "equipe": "São Paulo",
+            "pontos": 30,
+            "jogos": 17,
+            "vitorias": 9,
+            "empates": 4,
+            "derrotas": 5,
+            "golsPro": 26,
+            "golsContra": 18,
+            "saldoGols": 8,
+            "aproveitamento": "60.78%"
+        },
+        {
+            "position": 5,
+            "equipe": "Bahia",
+            "pontos": 30,
+            "jogos": 18,
+            "vitorias": 9,
+            "empates": 3,
+            "derrotas": 6,
+            "golsPro": 28,
+            "golsContra": 24,
+            "saldoGols": 4,
+            "aproveitamento": "55.56%"
+        },
+        {
+            "position": 6,
+            "equipe": "Cruzeiro",
+            "pontos": 29,
+            "jogos": 16,
+            "vitorias": 9,
+            "empates": 2,
+            "derrotas": 5,
+            "golsPro": 23,
+            "golsContra": 18,
+            "saldoGols": 5,
+            "aproveitamento": "60.42%"
+        },
+        {
+            "position": 7,
+            "equipe": "Fortaleza",
+            "pontos": 29,
+            "jogos": 16,
+            "vitorias": 8,
+            "empates": 5,
+            "derrotas": 3,
+            "golsPro": 19,
+            "golsContra": 16,
+            "saldoGols": 3,
+            "aproveitamento": "60.42%"
+        },
+        {
+            "position": 8,
+            "equipe": "Atlético-PR",
+            "pontos": 25,
+            "jogos": 16,
+            "vitorias": 7,
+            "empates": 4,
+            "derrotas": 5,
+            "golsPro": 20,
+            "golsContra": 16,
+            "saldoGols": 4,
+            "aproveitamento": "52.08%"
+        },
+        {
+            "position": 9,
+            "equipe": "Vasco",
+            "pontos": 23,
+            "jogos": 17,
+            "vitorias": 7,
+            "empates": 2,
+            "derrotas": 8,
+            "golsPro": 20,
+            "golsContra": 26,
+            "saldoGols": -6,
+            "aproveitamento": "45.10%"
+        },
+        {
+            "position": 10,
+            "equipe": "Internacional",
+            "pontos": 22,
+            "jogos": 14,
+            "vitorias": 6,
+            "empates": 4,
+            "derrotas": 4,
+            "golsPro": 18,
+            "golsContra": 16,
+            "saldoGols": 2,
+            "aproveitamento": "52.38%"
+        },
+        {
+            "position": 11,
+            "equipe": "Red Bull Bragantino",
+            "pontos": 22,
+            "jogos": 16,
+            "vitorias": 6,
+            "empates": 4,
+            "derrotas": 6,
+            "golsPro": 21,
+            "golsContra": 20,
+            "saldoGols": 1,
+            "aproveitamento": "45.83%"
+        },
+        {
+            "position": 12,
+            "equipe": "Atlético-MG",
+            "pontos": 22,
+            "jogos": 16,
+            "vitorias": 5,
+            "empates": 7,
+            "derrotas": 4,
+            "golsPro": 23,
+            "golsContra": 25,
+            "saldoGols": 2,
+            "aproveitamento": "45.83%"
+        },
+        {
+            "position": 13,
+            "equipe": "Juventude",
+            "pontos": 20,
+            "jogos": 15,
+            "vitorias": 5,
+            "empates": 5,
+            "derrotas": 5,
+            "golsPro": 19,
+            "golsContra": 20,
+            "saldoGols": -1,
+            "aproveitamento": "44.44%"
+        },
+        {
+            "position": 14,
+            "equipe": "Corinthians",
+            "pontos": 18,
+            "jogos": 17,
+            "vitorias": 5,
+            "empates": 6,
+            "derrotas": 8,
+            "golsPro": 20,
+            "golsContra": 25,
+            "saldoGols": -5,
+            "aproveitamento": "41.18%"
+        },
+        {
+            "position": 15,
+            "equipe": "Criciuma",
+            "pontos": 17,
+            "jogos": 15,
+            "vitorias": 4,
+            "empates": 5,
+            "derrotas": 6,
+            "golsPro": 22,
+            "golsContra": 24,
+            "saldoGols": -2,
+            "aproveitamento": "37.78%"
+        },
+        {
+            "position": 16,
+            "equipe": "Cuiabá",
+            "pontos": 17,
+            "jogos": 16,
+            "vitorias": 4,
+            "empates": 5,
+            "derrotas": 7,
+            "golsPro": 18,
+            "golsContra": 21,
+            "saldoGols": -3,
+            "aproveitamento": "35.42%"
+        },
+        {
+            "position": 17,
+            "equipe": "Vitória",
+            "pontos": 15,
+            "jogos": 17,
+            "vitorias": 4,
+            "empates": 3,
+            "derrotas": 10,
+            "golsPro": 19,
+            "golsContra": 28,
+            "saldoGols": -9,
+            "aproveitamento": "29.41%"
+        },
+        {
+            "position": 18,
+            "equipe": "Grêmio",
+            "pontos": 11,
+            "jogos": 15,
+            "vitorias": 3,
+            "empates": 2,
+            "derrotas": 10,
+            "golsPro": 10,
+            "golsContra": 20,
+            "saldoGols": -10,
+            "aproveitamento": "24.44%"
+        },
+        {
+            "position": 19,
+            "equipe": "Atlético-GO",
+            "pontos": 11,
+            "jogos": 17,
+            "vitorias": 2,
+            "empates": 5,
+            "derrotas": 10,
+            "golsPro": 14,
+            "golsContra": 25,
+            "saldoGols": -11,
+            "aproveitamento": "21.57%"
+        },
+        {
+            "position": 20,
+            "equipe": "Fluminense",
+            "pontos": 8,
+            "jogos": 16,
+            "vitorias": 1,
+            "empates": 5,
+            "derrotas": 10,
+            "golsPro": 12,
+            "golsContra": 24,
+            "saldoGols": -11,
+            "aproveitamento": "16.67%"
+        }
+    ],
+    "jogos": [
+        {
+            "equipe_a": "Atlético-MG",
+            "equipe_b": "Atlético-PR",
+            "gol_a": 1,
+            "gol_b": 0,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Bahia",
+            "equipe_b": "São Paulo",
+            "gol_a": 0,
+            "gol_b": 1,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Criciuma",
+            "equipe_b": "Cuiabá",
+            "gol_a": 1,
+            "gol_b": 1,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Corinthians",
+            "equipe_b": "Cruzeiro",
+            "gol_a": 1,
+            "gol_b": 1,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Flamengo",
+            "equipe_b": "Fortaleza",
+            "gol_a": 2,
+            "gol_b": 0,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Grêmio",
+            "equipe_b": "Internacional",
+            "gol_a": 0,
+            "gol_b": 1,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Juventude",
+            "equipe_b": "Red Bull Bragantino",
+            "gol_a": 1,
+            "gol_b": 1,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Palmeiras",
+            "equipe_b": "Vasco",
+            "gol_a": 1,
+            "gol_b": 0,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Vitória",
+            "equipe_b": "Fluminense",
+            "gol_a": 1,
+            "gol_b": 0,
+            "rodada": 1
+        },
+        {
+            "equipe_a": "Atlético-PR",
+            "equipe_b": "Bahia",
+            "gol_a": 1,
+            "gol_b": 0,
+            "rodada": 2
+        },
+        {
+            "equipe_a": "Atlético-MG",
+            "equipe_b": "Criciuma",
+            "gol_a": 1,
+            "gol_b": 0,
+            "rodada": 2
+        }
+    ]
+}

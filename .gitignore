@@ -1,0 +1,41 @@
+# 🐍 Arquivos compilados do Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# 🚀 Ambientes virtuais
+venv/
+env/
+*.venv/
+
+# 🏗️ Configurações do VS Code
+.vscode/
+
+# 📦 Dependências instaladas via pip
+pip-log.txt
+pip-delete-this-directory.txt
+
+# 🗂️ Arquivos de banco de dados SQLite
+*.sqlite3
+
+# 🛠️ Logs e arquivos temporários
+*.log
+*.tmp
+
+# 🔍 Arquivos do Jupyter Notebook
+.ipynb_checkpoints/
+
+# 🚀 Configurações específicas de deploy
+.env
+.env.local
+.env.*.local
+
+# 📦 Dependências de desenvolviment
+node_modules
+
+# pycharm
+.idea/
+
+# intellij
