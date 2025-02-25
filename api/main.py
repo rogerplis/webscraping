@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+import clubes_router
 import classifica_router
+import rodada_router
 
 app = FastAPI()
 
@@ -20,6 +22,8 @@ def read_root():
 
 
 app.include_router(classifica_router.router)
+app.include_router(clubes_router.router)
+app.include_router(rodada_router.router)
 
 if __name__ == "__main__":
     import uvicorn

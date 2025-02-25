@@ -38,13 +38,19 @@ class Jogos(Base):
     visitante = Column(String)
     golsMandante = Column(Integer)
     golsVisitante = Column(Integer)
+    dataJogo = Column(String)
+    horaJogo = Column(String)
+    localJogo = Column(String)
 
-    def __init__(self, rodada, mandante, visitante, golsmandante, golsvisitante):
+    def __init__(self, rodada, mandante, visitante, golsMandante, golsVisitante, dataJogo, localJogo, horaJogo):
         self.rodada = rodada
         self.mandante = mandante
         self.visitante = visitante
-        self.golsMandante = golsmandante
-        self.golsVisitante = golsvisitante
+        self.golsMandante = golsMandante
+        self.golsVisitante = golsVisitante
+        self.dataJogo = dataJogo
+        self.localJogo = localJogo
+        self.horaJogo = horaJogo
 
 
 class Clubes(Base):

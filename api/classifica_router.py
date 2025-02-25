@@ -10,5 +10,5 @@ router = APIRouter(prefix='/classificacao', tags=['classificacao'])
 
 @router.get('/', response_model=List[ClassificacaoUpdate])
 def get_stading():
-    classificacao = get_classifications
+    classificacao = get_classifications()
     return classificacao
