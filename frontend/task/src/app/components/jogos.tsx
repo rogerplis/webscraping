@@ -1,23 +1,29 @@
 "use client";
-import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import {  useEffect, useState } from "react";
 import JogoRodada from "./jogo";
+import { Jogo } from "@/type";
 
 const Jogos = () => {
   const [rodada, setRodada] = useState(1);
+  const [jogos, setJogos] = useState<Jogo[]>([]);
   const handleRodada = (rodada: number) => {
     setRodada(rodada);
   };
-  const mandante = "Bahia";
-  const visitante = "Corinthians";
-  const golsMandante = 0;
-  const golsVisitante = 0;
-  const dataJogo = "A definir";
-  const localJogo = "A definir";
-  const horaJogo = "A definir";
-  const escudoMandante = `/serie_a/${mandante.toLowerCase()}.svg`;
-  const escudoVisitante = `/serie_a/${visitante.toLowerCase()}.svg`;
+  useEffect(() => {
+    const fetchJogos = async () => {
+      try {
+        const response = await fetch(`http://localhost:8585/rodada/${rodada}`);
+        const data = await response.json();
+        setJogos(data);
+      } catch (error) {
+        console.error("Error fetching jogos:", error);
+      }
+    };
+    fetchJogos();
+  }, [rodada]);  
+
+
 
   return (
     <div className="flex flex-col items-center gap-1">
@@ -39,47 +45,21 @@ const Jogos = () => {
           }
         />
       </div>
-      <JogoRodada
-        rodada={0}
-        mandante={mandante}
-        visitante={visitante}
-        golsMandante={golsMandante}
-        golsVisitante={golsVisitante}
-        dataJogo={dataJogo}
-        localJogo={localJogo}
-        horaJogo={horaJogo}
-        escudoMandante={escudoMandante}
-        escudoVisitante={escudoVisitante}
-        
-      />
-      <div className="flex flex-col items-center border-t mt-1 p-2">
-        <span>30/03/2025 19:00</span>
-        <span> Fonte Nova - Salvador</span>
-        <div className="flex gap-2 items-center">
-          <div className="flex gap-2 items-center justify-end w-[180px] m-1 text-lg">
-            Flamengo{" "}
-            <Image
-              src="/serie_a/flamengo.svg"
-              alt="Flamengo"
-              width={40}
-              height={40}
-            />{" "}
-          </div>
-          <span className="text-center text-3xl">0</span>
-          <span className="text-center text-3xl">x</span>
-          <span className="text-center text-3xl">0</span>
-          <div className="flex gap-2 items-center justify-start w-[180px] m-1 text-lg">
-            {" "}
-            <Image
-              src="/serie_a/internacional.svg"
-              alt="Internacional"
-              width={40}
-              height={40}
-            />{" "}
-            Internacional{" "}
-          </div>
-        </div>
-      </div>
+      {jogos.map((jogo) => (
+        <JogoRodada
+          key={jogo.id}
+          id={jogo.id}
+          mandante={jogo.mandante}
+          visitante={jogo.visitante}
+          golsMandante={jogo.golsMandante}
+          golsVisitante={jogo.golsVisitante}
+          dataJogo={jogo.dataJogo}
+          localJogo={jogo.localJogo}
+          horaJogo={jogo.horaJogo}
+          mandanteEscudo={`/serie_a/${jogo.mandanteEscudo}.svg`}
+          visitanteEscudo={`/serie_a/${jogo.visitanteEscudo}.svg`}         />
+      ))}     
+     
     </div>
   );
 };

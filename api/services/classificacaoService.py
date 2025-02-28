@@ -1,13 +1,13 @@
 from collections import defaultdict
 import json
-
+from pathlib import Path
 from sqlalchemy.future import select
-from model import Classifications, Jogos, Clubes
-from schemas import ClassificacaoUpdate, ClubesSchemaUpdate, Jogo, UpdateClassificacao
-
+from model import Classifications
+from schemas.jogosSchema import Jogo
+from schemas.classificacaoSchema import ClassificacaoUpdate
 from con import session
 
-file_path = '../dados/dados.json'
+file_path = Path(__file__).parent.parent / "dados" / "dados.json"
 
 """Area de Classificacao"""
 def get_classifications():
@@ -36,62 +36,6 @@ def update_classificacao(equipe_id: int, classsificacao_update: ClassificacaoUpd
         setattr(classification, key, value)
     session.commit()
     return classification
-
-"""Area de Clubes"""
-def criar_clube(nome: str, serie: str, escudo: str):
-    clube = Clubes(nome=nome, serie=serie, escudo=escudo)
-    session.add(clube)
-    session.commit()
-    return clube
-
-
-def get_all_clubes():
-    stmt = select(Clubes)    
-    stmt = stmt.order_by(Clubes.serie)
-    clubes = session.execute(stmt).scalars().all()
-    agrupados = defaultdict(list)
-    for clube in clubes:
-        agrupados[clube.serie].append(clube)
-
-    return dict(agrupados)
-
-# update clube
-def update_clube(clube_id: int, clube_update: ClubesSchemaUpdate):
-    stmt = select(Clubes).where(Clubes.id == clube_id)
-    clube = session.execute(stmt).scalars().first()
-    if clube is None:
-        return {"error": "Equipe não encontrada"}
-
-    for key, value in clube_update.model_dump().items():
-        setattr(clube, key, value)
-    session.commit()
-    return {"Message": f'Clube {clube.nome} foi alterado com sucesso'}, 
-
-
-# deletar clube
-def deletar_clube(clube_id: int):
-    stmt = select(Clubes).where(Clubes.id == clube_id)
-    clube = session.execute(stmt).scalars().first()
-    if stmt is None:
-        return {"error": "Equipe nao encontrada"}
-    session.delete(clube)
-    session.commit()
-    return {"Message": "Clube deletado com sucesso"}
-
-"""Area de Jogos"""
-def criar_jogo(rodada: int,
-               mandante: str,
-               visitante: str,
-               golsMandante: int,
-               golsVisitante: int,
-               dataJogo: str,
-               localJogo: str,
-               horaJogo: str):
-    jogo = Jogos(rodada=rodada, mandante=mandante, visitante=visitante, golsMandante=golsMandante,
-                 golsVisitante=golsVisitante, dataJogo=dataJogo, localJogo=localJogo, horaJogo=horaJogo)
-    session.add(jogo)
-    session.commit()
-    return {"Message": "Jogo criado com sucesso"}
 
 
 def improvement(vitorias, empates, jogos):
@@ -154,31 +98,6 @@ def update_classificacao2(eqpe: str, jogos: int, vitorias: int, empates: int, de
     return classification
 
 
-def get_all_jogos_por_rodada(rodada: int):
-    stmt = select(Jogos).where(Jogos.rodada == rodada)
-    return session.execute(stmt).scalars().all()
-
-
-def get_jogo_all():
-    stmt = select(Jogos)
-    stmt = stmt.group_by(Jogos)
-    return session.execute(stmt).scalars().all()
-
-
-def get_jogo_por_equipe(equipe: str):
-    stmt = select(Jogos).where(Jogos.mandante == equipe or Jogos.visitante == equipe)
-    return session.execute(stmt).scalars().all()
-
-
-def ler_dados():
-    with open(file_path) as file:
-        data = json.load(file)
-    equipes = data['clubes']
-    for i, time in enumerate(equipes):
-        criar_clube(time['nome'], time['serie'], time['escudo'])
-    return equipes
-
-
 def resetar_classificacao():
     stmt = select(Classifications)
     classificacao = session.execute(stmt).scalars().all()
@@ -238,17 +157,5 @@ def somatorio_por_clube(clube: str, j: Jogo):  # clubes = get_all_clubes() jogos
     session.commit()
 
     return {"message": "Dados atualizados com sucesso"}
-
-
-"""
-with open(file_path,'r',encoding='utf-8') as file:
-    data = json.load(file)
-    equipes = data['clubes']
-    for time in equipes:
-        criar_clube(time['nome'], time['serie'], time['escudo'])
-"""
-# atualizar_dados('Cuiabá', 'Fluminense', 0, 1)
-
-
 
 

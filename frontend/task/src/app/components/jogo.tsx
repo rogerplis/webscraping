@@ -10,24 +10,24 @@ const JogoRodada = (jogo: Jogo) => {
               <div className="flex gap-2 items-center justify-end w-[180px] m-1 text-lg">
                 {jogo.mandante}{" "}
                 <Image
-                  src={jogo.escudoMandante}
+                  src={jogo.mandanteEscudo}
                   alt={jogo.mandante}
                   width={40}
                   height={40}
-                />{" "}
+                />
               </div>
               <span className="text-center text-3xl">{jogo.golsMandante}</span>
               <span className="text-center text-3xl">x</span>
               <span className="text-center text-3xl">{jogo.golsVisitante}</span>
               <div className="flex gap-2 items-center justify-start w-[180px] m-1 text-lg">
-                {" "}
+                
                 <Image
-                  src={jogo.escudoVisitante}
+                  src={jogo.visitanteEscudo}
                   alt={jogo.visitante}
                   width={40}
                   height={40}
-                />{" "}
-                {jogo.visitante}{" "}
+                />
+                {jogo.visitante}
               </div>
             </div>
           </div>);

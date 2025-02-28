@@ -1,8 +1,8 @@
 from typing import List
 from fastapi import APIRouter
 
-from schemas import ClubesAgrupados, ClubesSchema, ClubesSchemaUpdate
-from services import criar_clube, deletar_clube, get_all_clubes, update_clube
+from schemas.clubeSchema import ClubesSchema, ClubesSchemaUpdate
+from services.clubeService import criar_clube, deletar_clube, get_all_clubes, update_clube
 
 
 router = APIRouter(prefix='/clubes', tags=['clubes'])

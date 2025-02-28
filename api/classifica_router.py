@@ -2,13 +2,13 @@ from typing import List
 
 from fastapi import APIRouter
 
-from schemas import ClassificacaoUpdate
-from services import get_classifications
+
+from services.classificacaoService import get_classifications
 
 router = APIRouter(prefix='/classificacao', tags=['classificacao'])
 
 
-@router.get('/', response_model=List[ClassificacaoUpdate])
+@router.get('/')
 def get_stading():
     classificacao = get_classifications()
     return classificacao

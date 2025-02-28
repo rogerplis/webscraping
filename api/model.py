@@ -59,11 +59,17 @@ class Clubes(Base):
     nome = Column(String)
     serie = Column(String)
     escudo = Column(String)
+    estadio = Column(String)
+    cidade = Column(String)
+    sigla = Column(String)
 
-    def __init__(self, nome, serie, escudo):
+    def __init__(self, nome, serie, escudo, estadio, cidade, sigla):
         self.nome = nome
         self.serie = serie
         self.escudo = escudo
+        self.estadio = estadio
+        self.cidade = cidade
+        self.sigla = sigla
 
 
 Base.metadata.create_all(engine)
