@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from con import Base, engine
+from config import Base, engine
 
 
 class Classifications(Base):

@@ -2,10 +2,10 @@ from collections import defaultdict
 import json
 from pathlib import Path
 from sqlalchemy.future import select
-from model import Classifications
-from schemas.jogosSchema import Jogo
-from schemas.classificacaoSchema import ClassificacaoUpdate
-from con import session
+from api.model import Classifications
+from api.schemas.jogosSchema import Jogo
+from api.schemas.classificacaoSchema import ClassificacaoUpdate
+from api.config  import session
 
 file_path = Path(__file__).parent.parent / "dados" / "dados.json"
 

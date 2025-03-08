@@ -15,6 +15,7 @@ class Jogo(BaseModel):
     horaJogo: str
 
 class JogoResponse(BaseModel):
+    id: int
     rodada: int
     mandante: str    
     visitante: str      

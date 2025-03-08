@@ -5,8 +5,9 @@ import { Input } from "@/components/ui/input";
 import {  useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
+import {useEffect, useState} from "react";
 
-const formSchema = z.object({
+export const formSchema = z.object({
     rodada: z.coerce.number(),
     mandante: z.string(),
     visitante: z.string(),
@@ -17,10 +18,24 @@ const formSchema = z.object({
     horaJogo: z.string(),
     
 });
+export const updateFormSchema = formSchema.extend({
+    id: z.coerce.number(),
+});
 
-const FormJogo = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+export type FormValues =
+    z.infer<typeof formSchema> | z.infer<typeof updateFormSchema>;
+
+interface FormJogoProps{
+    initialValues?: FormValues;
+    isUpdate?: boolean;
+    onSuccess?: () => void;
+    onAdd?: (values: z.infer<typeof formSchema>) => Promise<void>;
+    onUpdate?: (values: z.infer<typeof updateFormSchema>) => Promise<void>;
+}
+
+export const FormJogo: React.FC<FormJogoProps>=({initialValues, isUpdate, onSuccess, onAdd, onUpdate}) => {
+    const form = useForm<FormValues>({
+        resolver: zodResolver(isUpdate ? updateFormSchema : formSchema),
         defaultValues: {
             rodada: 1,
             mandante: "",
@@ -30,31 +45,72 @@ const FormJogo = () => {
             dataJogo: "",
             localJogo: "",
             horaJogo: "",
+            ...(initialValues || {}),
         },
     })
+    const [isSubmitting, setisSubmitting] = useState<boolean>(false);
+    const [submitError, setSubmitError] = useState<string | null>(null);
+
+    useEffect(() => {
+        if(initialValues){
+            form.reset(initialValues);
+        }
+    }, [initialValues,form]);
 
     async function onSubmit(values: z.infer<typeof formSchema>) {
+        setisSubmitting(true);
+        setSubmitError(null);
+
         try {
-            const response = await fetch("http://localhost:8585/rodada/add", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(values),
-                
-            });
-            
-            if (!response.ok) {
-                throw new Error("Network response was not ok");
+            if (isUpdate) {
+                if(onUpdate){
+                    await onUpdate(values as z.infer<typeof updateFormSchema>);
+                    form.reset();
+                    onSuccess?.();
+                } else {
+                    throw new Error("onUpdate function is not defined")
+                }
+
+                const response = await fetch("http://localhost:8585/rodada/add", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(values),
+
+                });
+
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+
+                const data = await response.json();
+                console.log(data);
+
+            } else {
+                if(onAdd){
+                    await onAdd(values as z.infer<typeof formSchema> );
+                    form.reset();
+                    onSuccess?.();
+                } else {
+                    throw new Error("onAdd function is not defined")
+                }
             }
-            
-            const data = await response.json();
-            console.log(data);
-            
-        } catch (error) {
-            console.log(error);
-        }        
-        
+
+        }  catch (error:unknown) {
+            let errorMessage = "An error ocurred while submitting the form";
+            if (error instanceof Error) {
+                console.error(error.message);
+                errorMessage = error.message;
+            } else {
+                console.error("An unknown error occurred", error);
+                errorMessage = "An unknown error occurred";
+            }
+            setSubmitError(errorMessage);
+        } finally {
+            setisSubmitting(false);
+        }
+
       }
 
 
@@ -100,35 +156,7 @@ const FormJogo = () => {
                 </FormItem>
             )}
             />
-            {/* 
-            
-            <FormField
-            control={form.control}
-            name="golsMandante"
-            render={({ field }) => (
-                <FormItem>
-                <FormLabel>Gols Mandante</FormLabel>
-                <FormControl>
-                    <Input placeholder="Gols Mandante" {...field} />
-                </FormControl>
-                <FormMessage />
-                </FormItem>
-            )}
-            />
-            <FormField
-            control={form.control}
-            name="golsVisitante"
-            render={({ field }) => (
-                <FormItem>
-                <FormLabel>Gols Visitante</FormLabel>
-                <FormControl>
-                    <Input placeholder="Gols Visitante" {...field} />
-                </FormControl>
-                <FormMessage />
-                </FormItem>
-            )}
-            />
-            */}
+
             <FormField
             control={form.control}
             name="dataJogo"
@@ -168,7 +196,10 @@ const FormJogo = () => {
                 </FormItem>
             )}
             />
-            <Button variant={"default"} type="submit">Submit</Button>
+            {submitError && <p className="text-red-500">{submitError}</p>}
+            <Button variant={"default"} type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Enviando..." : isUpdate ? "Atualizar" : "Adicionar"}
+            </Button>
         </form>
         </Form>
      );

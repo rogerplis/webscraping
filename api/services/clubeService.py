@@ -2,9 +2,10 @@ from collections import defaultdict
 import json
 from pathlib import Path
 from sqlalchemy.future import select
-from schemas.clubeSchema import ClubesSchemaUpdate 
-from model import  Clubes
-from con import session
+
+from api.config import session
+from api.model import Clubes
+from api.schemas.clubeSchema import ClubesSchemaUpdate
 
 file_path = Path(__file__).parent.parent / "dados" / "dados.json"
 

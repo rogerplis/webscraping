@@ -1,5 +1,6 @@
 import { Clubes } from "@/type";
 import Image from "next/image";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/components/ui/tooltip";
 
 async function getClubes(): Promise<Clubes[]> {
     const response = await fetch('http://localhost:8585/clubes', {
@@ -34,28 +35,38 @@ async function ClubesList()  {
     console.log(clubes);
     return ( <div>
         <h1 className="text-2xl">Clubes Participantes</h1>
-        <div className="flex flex-col items-center gap-1">
+        <div className="grid grid-cols-4 gap-2 items-center ">
             {clubes.length === 0 ? (
                 <div>Não há clubes cadastrados</div>
             ): (
                 clubes.map(clube => (
-                    <div key={clube.id} className="flex items-center border-t mt-2 p-2 gap-2">
-                        <div className="flex gap-2 items-center justify-start w-[250px] m-1 text-sm">
-                            <Image
-                            src={`/serie_a/${clube.escudo}`}
-                            alt={clube.nome}
-                            width={40}
-                            height={40}
-                            />{" "}
-                            <span>{clube.nome}</span> {" "}
-                        </div>
-                        
-                    </div>
+                    <TooltipProvider>
+                         <Tooltip>
+                             <TooltipTrigger>
+
+                                 <div key={clube.id} className="flex items-center border-t mt-2 p-2 gap-2">
+                                     <div className="flex gap-2 items-center justify-start w-[250px] m-1 text-sm">
+                                         <Image
+                                             src={`/serie_a/${clube.escudo}`}
+                                             alt={clube.nome}
+                                             width={40}
+                                             height={40}
+                                         />{" "}
+                                     </div>
+
+                                 </div>
+                             </TooltipTrigger>
+                             <TooltipContent>
+                                 <span>{clube.nome}</span>
+                             </TooltipContent>
+                         </Tooltip>
+                    </TooltipProvider>
+
                 ))
             )
-        }
+            }
         </div>
-    </div> );
+    </div>);
 }
- 
+
 export default ClubesList;

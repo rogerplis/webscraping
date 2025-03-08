@@ -1,3 +1,5 @@
+import re
+
 import requests
 import json
 from bs4 import BeautifulSoup
@@ -62,9 +64,12 @@ for id_pai in ids:
         #print(nome, img, nome_serie)
 
 def remover_acentos(texto) -> str:
+    texto = re.sub(r'[^\w\s]', '', texto)
+    texto = texto.lstrip()
+    texto = texto.rstrip()
     texto = texto.lower()
     texto = texto.replace(' ', '-')
     return unicodedata.normalize('NFKD', texto).encode('ASCII', 'ignore').decode('ASCII')
 
 
-print(remover_acentos('São Paulo'))
+print(remover_acentos('São Paulo .'))

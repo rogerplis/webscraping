@@ -2,10 +2,10 @@ from collections import defaultdict
 import json
 from pathlib import Path
 from sqlalchemy.future import select
-from model import Jogos
-from schemas.jogosSchema import Jogo
+from api.model import Jogos
+from api.schemas.jogosSchema import Jogo
 
-from con import session
+from api.config import session
 
 file_path = Path(__file__).parent.parent / "dados" / "dados.json"
 
@@ -42,3 +42,6 @@ def get_jogo_por_equipe(equipe: str):
     stmt = select(Jogos).where(Jogos.mandante == equipe or Jogos.visitante == equipe)
     return session.execute(stmt).scalars().all()
 
+def get_jogo(id: int):
+    stmt = select(Jogos).where(Jogos.id == id)
+    return session.execute(stmt).scalars().first()

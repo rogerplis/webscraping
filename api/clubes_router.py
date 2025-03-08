@@ -1,7 +1,6 @@
-from typing import List
 from fastapi import APIRouter
 
-from schemas.clubeSchema import ClubesSchema, ClubesSchemaUpdate
+from api.schemas.clubeSchema import ClubesSchema, ClubesSchemaUpdate
 from services.clubeService import criar_clube, deletar_clube, get_all_clubes, update_clube
 
 

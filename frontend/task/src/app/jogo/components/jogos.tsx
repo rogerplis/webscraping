@@ -1,8 +1,14 @@
 "use client";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import {  useEffect, useState } from "react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  CirclePlus,
+  
+} from "lucide-react";
+import { useEffect, useState } from "react";
 import JogoRodada from "./jogo";
 import { Jogo } from "@/type";
+import Link from "next/link";
 
 const Jogos = () => {
   const [rodada, setRodada] = useState(1);
@@ -21,9 +27,8 @@ const Jogos = () => {
       }
     };
     fetchJogos();
-  }, [rodada]);  
-
-
+  }, [rodada]);
+  console.log(jogos.length);
 
   return (
     <div className="flex flex-col items-center gap-1">
@@ -45,21 +50,31 @@ const Jogos = () => {
           }
         />
       </div>
+      {(jogos ?? []).length < 10 && (
+            <Link href="jogo/add">
+              <CirclePlus />
+            </Link>
+          )}
       {jogos.map((jogo) => (
-        <JogoRodada
-          key={jogo.id}
-          id={jogo.id}
-          mandante={jogo.mandante}
-          visitante={jogo.visitante}
-          golsMandante={jogo.golsMandante}
-          golsVisitante={jogo.golsVisitante}
-          dataJogo={jogo.dataJogo}
-          localJogo={jogo.localJogo}
-          horaJogo={jogo.horaJogo}
-          mandanteEscudo={`/serie_a/${jogo.mandanteEscudo}.svg`}
-          visitanteEscudo={`/serie_a/${jogo.visitanteEscudo}.svg`}         />
-      ))}     
-     
+        console.log(jogo.id),
+        <Link key={jogo.id} href={`/jogo/edit/${jogo.id}`}>     
+          
+          <JogoRodada
+            key={jogo.id}
+            id={jogo.id}
+            mandante={jogo.mandante}
+            visitante={jogo.visitante}
+            golsMandante={jogo.golsMandante}
+            golsVisitante={jogo.golsVisitante}
+            dataJogo={jogo.dataJogo}
+            localJogo={jogo.localJogo}
+            horaJogo={jogo.horaJogo}
+            mandanteEscudo={`/serie_a/${jogo.mandanteEscudo}.svg`}
+            visitanteEscudo={`/serie_a/${jogo.visitanteEscudo}.svg`}
+          />
+        
+        </Link>
+      ))}
     </div>
   );
 };

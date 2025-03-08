@@ -1,5 +1,5 @@
 export interface Jogo {
-    id: number | null | undefined    
+    id: number | null | undefined        
     mandante: string
     visitante: string
     golsMandante: number
@@ -12,6 +12,17 @@ export interface Jogo {
   }
 
   export interface JogoAdd {
+    rodada: number
+    mandante: string
+    visitante: string
+    golsMandante: number
+    golsVisitante: number
+    dataJogo: string
+    localJogo: string
+    horaJogo: string    
+  }
+  export interface JogoUpdate {
+    id: number | null | undefined 
     rodada: number
     mandante: string
     visitante: string
