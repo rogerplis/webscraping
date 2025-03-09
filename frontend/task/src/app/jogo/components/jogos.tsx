@@ -28,7 +28,7 @@ const Jogos = () => {
     };
     fetchJogos();
   }, [rodada]);
-  console.log(jogos.length);
+  
 
   return (
     <div className="flex flex-col items-center gap-1">
@@ -55,8 +55,7 @@ const Jogos = () => {
               <CirclePlus />
             </Link>
           )}
-      {jogos.map((jogo) => (
-        console.log(jogo.id),
+      {jogos.map((jogo) => (        
         <Link key={jogo.id} href={`/jogo/edit/${jogo.id}`}>     
           
           <JogoRodada

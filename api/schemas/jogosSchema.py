@@ -45,3 +45,14 @@ class JogoResponse(BaseModel):
         data['escudoVisitante'] = self.visitanteEscudo       
         
         return data
+
+class JogoUpdate(BaseModel):
+        id: int
+        rodada: int
+        mandante: str
+        visitante: str
+        golsMandante: int
+        golsVisitante: int
+        dataJogo: str
+        localJogo: str
+        horaJogo: str

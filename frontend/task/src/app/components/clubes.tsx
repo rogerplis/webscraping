@@ -35,17 +35,17 @@ async function ClubesList()  {
     console.log(clubes);
     return ( <div>
         <h1 className="text-2xl">Clubes Participantes</h1>
-        <div className="grid grid-cols-4 gap-2 items-center ">
+        <div className="grid grid-cols-4 gap-2 items-start ">
             {clubes.length === 0 ? (
                 <div>Não há clubes cadastrados</div>
             ): (
                 clubes.map(clube => (
-                    <TooltipProvider>
+                    <TooltipProvider key={clube.id}>
                          <Tooltip>
                              <TooltipTrigger>
 
-                                 <div key={clube.id} className="flex items-center border-t mt-2 p-2 gap-2">
-                                     <div className="flex gap-2 items-center justify-start w-[250px] m-1 text-sm">
+                                 <div key={clube.id} className="flex items-center w-[250px] border-t border-b h-10 mt-2 p-2 gap-2">
+                                     <div className="flex gap-2 items-center justify-start  m-1 text-sm">
                                          <Image
                                              src={`/serie_a/${clube.escudo}`}
                                              alt={clube.nome}

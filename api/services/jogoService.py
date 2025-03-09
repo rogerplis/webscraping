@@ -1,9 +1,11 @@
 from collections import defaultdict
 import json
 from pathlib import Path
+
+from fastapi import HTTPException
 from sqlalchemy.future import select
 from api.model import Jogos
-from api.schemas.jogosSchema import Jogo
+from api.schemas.jogosSchema import JogoUpdate
 
 from api.config import session
 
@@ -45,3 +47,43 @@ def get_jogo_por_equipe(equipe: str):
 def get_jogo(id: int):
     stmt = select(Jogos).where(Jogos.id == id)
     return session.execute(stmt).scalars().first()
+
+def atualizar_jogo(id_jogo: int, jogo: JogoUpdate):
+    # Recupera o jogo da sessão diretamente, garantindo que ele seja associado à sessão
+    jogo_update = session.get(Jogos, id_jogo)
+
+    if jogo_update is None:
+        raise HTTPException(status_code=404, detail="Jogo não encontrado")
+
+    # Atualiza os campos do jogo com base no modelo
+    for key, value in jogo.model_dump().items():
+        setattr(jogo_update, key, value)
+
+    try:
+        # Confirma que o objeto já existe na sessão antes de tentar realizar o commit
+        session.merge(jogo_update)  # Força a sessão a reconhecer o objeto
+        session.commit()          # Comita as alterações
+        session.refresh(jogo_update)  # Atualiza o objeto com os dados mais recentes após o commit
+    except Exception as e:
+        # Se houver um erro durante o commit, podemos tratar de forma apropriada
+        session.rollback()
+        raise HTTPException(status_code=500, detail="Erro ao atualizar o jogo")
+
+    return jogo_update
+
+
+update_data = JogoUpdate(
+
+        id=12,
+        rodada= 1,
+        mandante= "Bahia",
+        visitante= "Corinthians",
+        golsMandante= 0,
+        golsVisitante= 0,
+        localJogo= "Casa de Apostas Arena Fonte Nova",
+        horaJogo="21:31",
+        dataJogo= "29/03/2025"
+
+)
+
+#atualizar_jogo(update_data.id, update_data)

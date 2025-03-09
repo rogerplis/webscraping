@@ -1,8 +1,8 @@
 from typing import List
 from fastapi import APIRouter
 
-from api.schemas.jogosSchema import Jogo, JogoResponse
-from services.jogoService import criar_jogo, get_all_jogos_por_rodada, get_jogo
+from api.schemas.jogosSchema import Jogo, JogoResponse, JogoUpdate
+from services.jogoService import criar_jogo, get_all_jogos_por_rodada, get_jogo, atualizar_jogo
 
 router = APIRouter(prefix='/rodada', tags=['rodada'])
 
@@ -25,4 +25,16 @@ def add_rodada(jogo: Jogo):
 @router.get('/jogo/{id}',response_model=JogoResponse)
 def get_jogorodada(id: int):
     jogo = get_jogo(id)
+    return jogo
+
+
+@router.put('/jogo/edit')
+def update_jogo(jogo: JogoUpdate):
+    print(f"Recebido para atualização: ID={jogo.id}, Mandante={jogo.mandante}")
+
+    if jogo.id is None:
+        return {"error": "ID não pode ser nulo"}
+
+    atualizar_jogo(jogo.id, jogo)
+
     return jogo

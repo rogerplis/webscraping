@@ -34,7 +34,7 @@ export default function EditJogoPage() {
 
     const handleUpdate = async (values: z.infer<typeof updateFormSchema>) => {
         try {
-            const response = await fetch(`http://localhost:8585/rodada/update/${values.id}`, {
+            const response = await fetch(`http://localhost:8585/rodada/jogo/edit`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

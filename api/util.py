@@ -4,7 +4,7 @@ import requests
 import json
 from bs4 import BeautifulSoup
 import unicodedata
-from services.clubeService import criar_clube
+from api.services.clubeService import criar_clube
 
 
 

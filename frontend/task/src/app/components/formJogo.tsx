@@ -71,21 +71,6 @@ export const FormJogo: React.FC<FormJogoProps>=({initialValues, isUpdate, onSucc
                     throw new Error("onUpdate function is not defined")
                 }
 
-                const response = await fetch("http://localhost:8585/rodada/add", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify(values),
-
-                });
-
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-
-                const data = await response.json();
-                console.log(data);
 
             } else {
                 if(onAdd){

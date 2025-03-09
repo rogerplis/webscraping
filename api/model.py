@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String
 
-from config import Base, engine
+from api.config import Base, engine
 
 
 class Classifications(Base):
@@ -32,7 +32,7 @@ class Classifications(Base):
 
 class Jogos(Base):
     __tablename__ = 'tb_jogos'
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, autoincrement=True)
     rodada = Column(Integer)
     mandante = Column(String)
     visitante = Column(String)
